@@ -1,0 +1,27 @@
+.itemList{
+    margin-left: 20rem;
+    margin-top: 10rem;
+    z-index: 1000;
+    position: absolute;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+}
+
+.item{
+    background: yellow;
+    width: 12.5rem;
+    height: 12.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.itemName{
+    font-size: 18px;
+    margin-top: 12rem;
+    margin-left: 0.2rem;
+}
+
+.itemStock{
+    margin-left: 0.2rem;
+    margin-top: 0.2rem;
+}
