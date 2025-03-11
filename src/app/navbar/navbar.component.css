@@ -1,0 +1,22 @@
+.navbar {
+    width: 15rem;
+    height: 100%;
+    flex-shrink: 0;
+    background: #06367A;
+    color: white;
+    font-family: "Roboto", sans-serif;
+    z-index: 1000;
+    position: fixed;
+}
+
+.navitems {
+    display: flex;
+    flex-direction: column;
+    padding: 20rem 5rem;
+}
+
+.navitems a {
+    font-size: 16px;
+    font-weight: 400;
+    padding: 1rem 0;
+}
