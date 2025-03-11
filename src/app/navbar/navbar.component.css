@@ -28,7 +28,7 @@
     content: '';
     position: absolute;
     top: 0;
-    left: -10px; 
+    left: -50px; 
     width: 0px;
     height: 100%;
     background: #29528d;
@@ -37,6 +37,6 @@
 }
 
 .navitems a:hover::before {
-    width: calc(100% + 30px);
+    width: calc(100% + 100px);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
