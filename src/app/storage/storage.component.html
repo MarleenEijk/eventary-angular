@@ -1,10 +1,11 @@
-    <div class="itemList">
+<div class="itemList">
+    <div class="itemWrapper" *ngFor="let item of items">
         <div class="item">
             <div class="itemImage">
-                <img src="https://via.placeholder.com/150" alt="itemImage">
+                <img [src]="item.imageUrl" alt="itemImage">
             </div>
-            <div class="itemName">Name</div>
-            <div class="itemStockcolor">-</div>
-            <div class="itemStock">Voorraad: - stuks</div>
         </div>
+        <div class="itemName">{{ item.name }}</div>
+        <div class="itemStock">Voorraad: {{ item.quantity }} stuks</div>
     </div>
+</div>

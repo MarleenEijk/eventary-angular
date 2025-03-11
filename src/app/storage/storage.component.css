@@ -7,11 +7,16 @@
     position: absolute;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
-    margin-top: 3rem;
+    margin-top: 10rem;
+}
+
+.itemWrapper {
+    display: flex;
+    flex-direction: column;
 }
 
 .item {
-    background: yellow;
+    background: white;
     width: 12.5rem;
     height: 12.5rem;
     border-radius: 10px;
@@ -20,12 +25,26 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 1rem;
-    margin-top: 7rem;
+    margin-top: 2rem;
 }
 
 .itemName {
     font-size: 18px;
-    margin-top: 13rem;
+    margin-top: 0.5rem;
+}
+
+.itemImage {
+    width: 12.5rem;
+    height: 12.5rem;
+    border-radius: 10px;
+    overflow: hidden; /* Ensure the image fits within the container */
+}
+
+.itemImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the container without distortion */
+    border-radius: 10px;
 }
 
 .itemStock {
