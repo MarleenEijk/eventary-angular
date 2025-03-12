@@ -1,3 +1,33 @@
+.search-container {
+    display: inline-block;
+    width: auto;
+    text-align: right;
+    margin-left: 20rem;
+    margin-top: 2rem;
+}
+
+.searchbar {
+    padding: 0.5em 2.5em 0.5em 1em;
+    border: none;
+    font-size: 17px;
+    background-color: #F7F7F7;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 16em;
+    position: relative;
+}
+
+.search-icon {
+    position: relative;
+    top: 0.9em;
+    right: 2em;
+    transform: translateY(-50%);
+    height: 1.2em;
+    width: auto;
+    pointer-events: none;
+    z-index: 3;
+}
+
 .itemList {
     display: flex;
     flex-wrap: wrap;
@@ -37,13 +67,13 @@
     width: 12.5rem;
     height: 12.5rem;
     border-radius: 10px;
-    overflow: hidden; /* Ensure the image fits within the container */
+    overflow: hidden;
 }
 
 .itemImage img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensure the image covers the container without distortion */
+    object-fit: cover;
     border-radius: 10px;
 }
 

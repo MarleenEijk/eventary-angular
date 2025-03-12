@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { StorageComponent } from './storage.component';
+import { FormsModule } from '@angular/forms';
 
 describe('StorageComponent', () => {
   let component: StorageComponent;
@@ -8,10 +8,11 @@ describe('StorageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StorageComponent]
+      imports: [FormsModule],
+      declarations: [StorageComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(StorageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
