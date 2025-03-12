@@ -10,7 +10,7 @@
     padding: 0.5em 2.5em 0.5em 1em;
     border: none;
     font-size: 17px;
-    background-color: #F7F7F7;
+    background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 16em;
@@ -28,6 +28,22 @@
     z-index: 3;
 }
 
+.dropdown {
+    display: inline-block;
+    width: auto;
+    text-align: right;
+    margin-left: 0.2rem;
+    margin-top: 2rem;
+}
+
+.mat-form-field {
+    width: 16em;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 0.5em 1em;
+}
+
 .itemList {
     display: flex;
     flex-wrap: wrap;
@@ -37,7 +53,7 @@
     position: absolute;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
-    margin-top: 10rem;
+    margin-top: 2rem;
 }
 
 .itemWrapper {
