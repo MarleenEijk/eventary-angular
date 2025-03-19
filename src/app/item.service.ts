@@ -19,4 +19,8 @@ export class ItemService {
   getItemById(id: number): Observable<Item> {
     return this.http.get<Item>(`${this.apiUrl}/${id}`);
   }
+
+  addItem(item: Item): Observable<Item> {
+    return this.http.post<Item>(this.apiUrl, item);
+  }
 }

@@ -9,6 +9,24 @@
     position: fixed;
 }
 
+.profileimage{
+    position: absolute;
+    height: 7rem;
+    width: auto;
+    margin-left: 4rem;
+    margin-top: 3rem;
+}
+
+.name{
+    color: white;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    position: absolute;
+    margin-top: 11rem;
+    margin-left: 6rem;
+}
+
 .navitems {
     display: flex;
     flex-direction: column;
@@ -22,6 +40,47 @@
     position: relative;
     text-decoration: none;
     color: white;
+}
+
+.storage{
+    height: 1.2rem;
+    width: auto;
+    position: absolute;
+    margin-left: -2rem;
+    margin-top: -0.1rem;
+}
+.truck{
+    height: 1.3rem;
+    width: auto;
+    position: absolute;
+    margin-left: -2rem;
+    margin-top: -0.1rem;
+}
+.agenda{
+    height: 1.3rem;
+    width: auto;
+    position: absolute;
+    margin-left: -2rem;
+    margin-top: -0.1rem;
+}
+.invoice{
+    height: 1.3rem;
+    width: auto;
+    position: absolute;
+    margin-left: -2rem;
+    margin-top: -0.1rem;
+}
+.logoutlogo{
+    height: 1.3rem;
+    width: auto;
+    position: absolute;
+    z-index: 1000;
+    margin-left: -1.7rem;
+    margin-top: -0.1rem;
+}
+
+.logout{
+    margin-top: 16rem;
 }
 
 .navitems a::before {
