@@ -41,7 +41,7 @@ export class StorageComponent implements OnInit {
     quantity: 0,
     imageUrl: '',
     category_id: 0,
-    company_id: 0
+    company_id: 1
   };
   range = new FormGroup({
     start: new FormControl<Date | null>(null),
@@ -99,15 +99,61 @@ export class StorageComponent implements OnInit {
   }
 
   addItem(): void {
+    this.newItem.company_id = 1;
+  
     this.itemService.addItem(this.newItem).subscribe(
-      (data: Item) => {
-        this.items.push(data);
-        this.filteredItems.push(data);
+      () => {
+        this.loadItems();
         this.closePopup();
       },
       (error: any) => {
         console.error('Error adding item:', error);
       }
     );
+  }  
+
+  selectedItem: Item | null = null;
+
+  viewItemDetails(id: number): void {
+    this.itemService.getItemById(id).subscribe(
+      (data: Item) => {
+        this.selectedItem = data;
+        this.showPopup = true;
+      },
+      (error: any) => {
+        console.error('Error fetching item details:', error);
+      }
+    );
+  }
+
+  closeItemDetailsPopup(): void {
+    this.selectedItem = null;
+    this.showPopup = false;
+  }
+
+  deleteItem(id: number): void {
+    this.itemService.deleteItem(id).subscribe(
+      () => {
+        this.loadItems();
+      },
+      (error: any) => {
+        console.error('Error deleting item:', error);
+      }
+    );
+  }
+  
+  updateItem(): void {
+    if (this.selectedItem) {
+      this.itemService.updateItem(this.selectedItem).subscribe(
+        (updatedItem: Item) => {
+          console.log('Item updated successfully:', updatedItem);
+          this.loadItems();
+          this.closeItemDetailsPopup();
+        },
+        (error: any) => {
+          console.error('Error updating item:', error);
+        }
+      );
+    }
   }
 }

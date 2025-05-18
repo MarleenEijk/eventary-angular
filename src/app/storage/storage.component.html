@@ -55,7 +55,7 @@
 
 <div class="itemList">
     <div class="itemWrapper" *ngFor="let item of filteredItems">
-        <div class="item">
+        <div class="item" (click)="viewItemDetails(item.id)">
             <div class="itemImage">
                 <img [src]="item.imageUrl" alt="itemImage">
             </div>
@@ -63,4 +63,20 @@
         <div class="itemName">{{ item.name }}</div>
         <div class="itemStock">Voorraad: {{ item.quantity }} stuks</div>
     </div>
+</div>
+
+<div class="popup itemDetailsPopup" *ngIf="selectedItem">
+  <div class="popup-content">
+    <span class="close" (click)="closeItemDetailsPopup()">&times;</span>
+    <h2>Item details</h2>
+    <p><strong>Naam:</strong> {{ selectedItem.name }}</p>
+    <p><strong>Prijs:</strong> €{{ selectedItem.price }}</p>
+    <p><strong>Hoeveelheid:</strong> {{ selectedItem.quantity }}</p>
+    <img [src]="selectedItem.imageUrl" alt="{{ selectedItem.name }}" class="itemImageDetails">
+
+    <div class="button-container">
+    <button (click)="updateItem()" class="editButton">Verander</button>
+    <button (click)="deleteItem(selectedItem.id)" class="deleteButton">Verwijder</button>
+  </div>  
+  </div>
 </div>
