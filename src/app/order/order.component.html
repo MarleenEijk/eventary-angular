@@ -1,1 +1,45 @@
-<p>order works!</p>
+<div class="Header">
+</div>
+
+<p class="title">Bestellingen</p>
+<div class="order-container-header">
+    <div class="order-header order-col-small">
+        <p class="order-header-text">Bestelling</p>
+    </div>
+    <div class="order-header order-col-medium">
+        <p class="order-header-text">Bezorg datum</p>
+    </div>
+    <div class="order-header order-col-medium">
+        <p class="order-header-text">Ophaal datum</p>
+    </div>
+    <div class="order-header order-col-small">
+        <p class="order-header-text">Naam</p>
+    </div>
+    <div class="order-header order-col-large">
+        <p class="order-header-text">Adress</p>
+    </div>
+    <div class="order-header order-col-medium">
+        <p class="order-header-text">Telefoonnummer</p>
+    </div>
+    <div class="order-header order-col-small">
+        <p class="order-header-text">Items</p>
+    </div>
+    <div class="order-header order-col-small">
+        <p class="order-header-text">Process</p>
+    </div>
+    <div class="order-header order-col-small">
+        <p class="order-header-text">Notitie</p>
+    </div>
+</div>
+<div class="order-container">
+    <div *ngFor="let order of orders" class="order-row" style="display: flex;">
+        <div class="order-header order-col-small">{{ order.id }}</div>
+        <div class="order-header order-col-medium">{{ order.startDate }}</div>
+        <div class="order-header order-col-medium">{{ order.endDate }}</div>
+        <div class="order-header order-col-small">{{ order.name }}</div>
+        <div class="order-header order-col-large">{{ order.address }}</div>
+        <div class="order-header order-col-medium">{{ order.phone }}</div>
+        <div class="order-header order-col-small">0</div>
+        <div class="order-header order-col-small">{{ order.status }}</div>
+    </div>
+</div>

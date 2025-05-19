@@ -1,0 +1,64 @@
+.Header{
+    margin-left: 18em;
+    margin-top: 0em;
+}
+
+.Header h1{
+    font-size: 21px;
+    font-family: "Roboto", sans-serif;
+}
+
+.title{
+    font-size: 21px;
+    font-family: "Roboto", sans-serif;
+    margin-left: 14em;
+    margin-top: 1em;
+    position: absolute;
+    font-weight: 500;
+}
+
+.order-container-header {
+    background-color: #F5F5F5;
+    width: 81.35%;
+    margin-top: 5em;
+    height: 4em;
+    margin-left: 18em;
+    position: absolute;
+    border-radius: 10px 10px 0px 0px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1em;
+    font-weight: 500;
+    font-family: "Roboto", sans-serif;
+}
+
+.order-header {
+    text-align: center;
+}
+
+.order-col-small {
+    flex: 0 0 8%; 
+    max-width: 8%;
+}
+.order-col-medium {
+    flex: 0 0 12%;
+    max-width: 12%;
+}
+.order-col-large {
+    flex: 0 0 18%;
+    max-width: 18%;
+}
+.order-container{
+    background-color: #FFFFFF;
+    width: 83%;
+    margin-top: 5em;
+    height: 54em;
+    margin-left: 18em;
+    position: absolute;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: -1;
+}
