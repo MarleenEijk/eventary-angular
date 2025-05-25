@@ -32,15 +32,18 @@
     </div>
 </div>
 <div class="order-container">
-    <div *ngFor="let order of orders" class="order-row" style="display: flex;">
-        <div class="order-header order-col-extra-small">{{ order.id }}</div>
-        <div class="order-header order-col-medium">{{ order.startDate }}</div>
-        <div class="order-header order-col-medium">{{ order.endDate }}</div>
-        <div class="order-header order-col-medium">{{ order.name }}</div>
-        <div class="order-header order-col-large">{{ order.address }}</div>
-        <div class="order-header order-col-small">{{ order.phone }}</div>
-        <div class="order-header order-col-extra-small">0</div>
-        <div class="order-header order-col-small">{{ order.status }}</div>
-        <div class="order-header order-col-extra-small">/</div>
+    <div *ngFor="let order of orders">
+        <div class="order-row" style="display: flex;">
+            <div class="order-header order-col-extra-small">{{ order.id }}</div>
+            <div class="order-header order-col-medium">{{ order.startDate | date:'yyyy-MM-dd' }}</div>
+            <div class="order-header order-col-medium">{{ order.endDate | date:'yyyy-MM-dd' }}</div>
+            <div class="order-header order-col-medium">{{ order.name }}</div>
+            <div class="order-header order-col-large">{{ order.address }}</div>
+            <div class="order-header order-col-small">{{ order.phone }}</div>
+            <div class="order-header order-col-extra-small">0</div>
+            <div class="order-header order-col-small">{{ order.status }}</div>
+            <div class="order-header order-col-extra-small">/</div>
+        </div>
+        <div class="order-separator"></div>
     </div>
 </div>
