@@ -9,7 +9,10 @@ import { FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angul
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { JsonPipe } from '@angular/common';
+import { JsonPipe } from '@angular/common';import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-storage',
@@ -21,7 +24,10 @@ import { JsonPipe } from '@angular/common';
     ReactiveFormsModule,
     MatDatepickerModule,
     MatFormFieldModule,
-    JsonPipe
+    JsonPipe,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule
   ],
   templateUrl: './storage.component.html',
   styleUrls: ['./storage.component.css'],
@@ -43,6 +49,15 @@ export class StorageComponent implements OnInit {
     category_id: 0,
     company_id: 1
   };
+
+  itemForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    price: new FormControl('', [Validators.required, Validators.min(0.01)]),
+    quantity: new FormControl('', [Validators.required, Validators.min(0)]),
+    category: new FormControl('', [Validators.required]),
+    imageUrl: new FormControl('', [Validators.required])
+  });
+
   range = new FormGroup({
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
@@ -92,39 +107,43 @@ export class StorageComponent implements OnInit {
 
   openPopup(): void {
     this.showPopup = true;
+    this.selectedItem = null;
+    this.itemForm.reset();
   }
 
   closePopup(): void {
     this.showPopup = false;
   }
 
-  addItem(): void {
-    this.newItem.company_id = 1;
-  
-    this.itemService.addItem(this.newItem).subscribe(
-      () => {
-        this.loadItems();
-        this.closePopup();
-      },
-      (error: any) => {
-        console.error('Error adding item:', error);
-      }
-    );
-  }  
-
+  addItem(form?: any): void {
+  if (form && form.invalid) {
+    return;
+  }
+  this.newItem.company_id = 1;
+  this.itemService.addItem(this.newItem).subscribe(
+    () => {
+      this.loadItems();
+      this.closePopup();
+    },
+    (error: any) => {
+      console.error('Error adding item:', error);
+    }
+  );
+}
   selectedItem: Item | null = null;
 
   viewItemDetails(id: number): void {
-    this.itemService.getItemById(id).subscribe(
-      (data: Item) => {
-        this.selectedItem = data;
-        this.showPopup = true;
-      },
-      (error: any) => {
-        console.error('Error fetching item details:', error);
-      }
-    );
+      this.itemService.getItemById(id).subscribe(
+        (data: Item) => {
+          this.selectedItem = data;
+          this.showPopup = false;
+        },
+        (error: any) => {
+          console.error('Error fetching item details:', error);
+        }
+      );
   }
+
 
   closeItemDetailsPopup(): void {
     this.selectedItem = null;
@@ -132,15 +151,16 @@ export class StorageComponent implements OnInit {
   }
 
   deleteItem(id: number): void {
-    this.itemService.deleteItem(id).subscribe(
-      () => {
-        this.loadItems();
-      },
-      (error: any) => {
-        console.error('Error deleting item:', error);
-      }
-    );
-  }
+  this.itemService.deleteItem(id).subscribe(
+    () => {
+      this.loadItems();
+      this.selectedItem = null;
+    },
+    (error: any) => {
+      console.error('Error deleting item:', error);
+    }
+  );
+}
   
   updateItem(): void {
     if (this.selectedItem) {

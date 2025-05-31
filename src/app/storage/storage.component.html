@@ -29,25 +29,42 @@
   <div class="popup-content">
     <span class="close" (click)="closePopup()">&times;</span>
     <h2>Add New Item</h2>
-    <form (ngSubmit)="addItem()">
-      <label for="itemName">Item Name:</label>
-      <input type="text" id="itemName" [(ngModel)]="newItem.name" name="name" required>
+    <form [formGroup]="itemForm" (ngSubmit)="addItem()">
+      <mat-form-field>
+        <mat-label>Naam</mat-label>
+        <input matInput formControlName="name" required>
+        <mat-error *ngIf="itemForm.get('name')?.hasError('required')">Naam is verplicht</mat-error>
+      </mat-form-field>
 
-      <label for="itemPrice">Price:</label>
-      <input type="number" id="itemPrice" [(ngModel)]="newItem.price" name="price" required>
+      <mat-form-field>
+        <mat-label>Prijs</mat-label>
+        <input matInput type="number" formControlName="price" required>
+        <mat-error *ngIf="itemForm.get('price')?.hasError('required')">Prijs is verplicht</mat-error>
+        <mat-error *ngIf="itemForm.get('price')?.hasError('min')">Prijs mag niet minder zijn dan 0</mat-error>
+      </mat-form-field>
 
-      <label for="itemQuantity">Quantity:</label>
-      <input type="number" id="itemQuantity" [(ngModel)]="newItem.quantity" name="quantity" required>
+      <mat-form-field>
+        <mat-label>Hoeveelheid</mat-label>
+        <input matInput type="number" formControlName="quantity" required>
+        <mat-error *ngIf="itemForm.get('quantity')?.hasError('required')">Hoeveelheid is verplicht</mat-error>
+        <mat-error *ngIf="itemForm.get('quantity')?.hasError('min')">Mag niet minder dan 0 zijn</mat-error>
+      </mat-form-field>
 
-      <label for="itemCategory">Category:</label>
-      <select id="itemCategory" [(ngModel)]="newItem.category_id" name="category_id" required>
-        <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
-      </select>
+      <mat-form-field>
+        <mat-label>Categorie</mat-label>
+        <mat-select formControlName="category" required>
+          <mat-option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="itemForm.get('category')?.hasError('required')">Categorie is verplicht</mat-error>
+      </mat-form-field>
 
-      <label for="itemImageUrl">Image URL:</label>
-      <input type="text" id="itemImageUrl" [(ngModel)]="newItem.imageUrl" name="imageUrl" required>
+      <mat-form-field>
+        <mat-label>Afbeelding URL</mat-label>
+        <input matInput formControlName="imageUrl" required>
+        <mat-error *ngIf="itemForm.get('imageUrl')?.hasError('required')">Afbeelding URL is verplicht</mat-error>
+      </mat-form-field>
 
-      <button type="submit">Add Item</button>
+      <button mat-raised-button color="primary" type="submit">Toevoegen</button>
     </form>
   </div>
 </div>
