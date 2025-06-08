@@ -28,8 +28,9 @@
 <div class="popup" *ngIf="showPopup">
   <div class="popup-content">
     <span class="close" (click)="closePopup()">&times;</span>
-    <h2>Add New Item</h2>
-    <form [formGroup]="itemForm" (ngSubmit)="addItem()">
+    <h2 *ngIf="!editMode">Add New Item</h2>
+    <h2 *ngIf="editMode">Update Item</h2>
+    <form [formGroup]="itemForm" (ngSubmit)="editMode ? saveUpdatedItem() : addItem()">
       <mat-form-field>
         <mat-label>Naam</mat-label>
         <input matInput formControlName="name" required>
@@ -64,11 +65,12 @@
         <mat-error *ngIf="itemForm.get('imageUrl')?.hasError('required')">Afbeelding URL is verplicht</mat-error>
       </mat-form-field>
 
-      <button mat-raised-button color="primary" type="submit">Toevoegen</button>
+      <button mat-raised-button color="primary" type="submit">
+        {{ editMode ? 'Opslaan' : 'Toevoegen' }}
+      </button>
     </form>
   </div>
 </div>
-
 
 <div class="itemList">
     <div class="itemWrapper" *ngFor="let item of filteredItems">
@@ -82,7 +84,7 @@
     </div>
 </div>
 
-<div class="popup itemDetailsPopup" *ngIf="selectedItem">
+<div class="popup itemDetailsPopup" *ngIf="selectedItem && !showPopup">
   <div class="popup-content">
     <span class="close" (click)="closeItemDetailsPopup()">&times;</span>
     <h2>Item details</h2>
@@ -92,8 +94,8 @@
     <img [src]="selectedItem.imageUrl" alt="{{ selectedItem.name }}" class="itemImageDetails">
 
     <div class="button-container">
-    <button (click)="updateItem()" class="editButton">Verander</button>
-    <button (click)="deleteItem(selectedItem.id)" class="deleteButton">Verwijder</button>
-  </div>  
+      <button (click)="openEditPopup()" class="editButton">Verander</button>
+      <button (click)="deleteItem(selectedItem.id)" class="deleteButton">Verwijder</button>
+    </div>  
   </div>
 </div>

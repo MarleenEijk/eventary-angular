@@ -111,16 +111,46 @@ export class StorageComponent implements OnInit {
     this.itemForm.reset();
   }
 
-  closePopup(): void {
-    this.showPopup = false;
+    editMode: boolean = false;
+
+  openEditPopup(): void {
+  if (this.selectedItem) {
+    this.editMode = true;
+    this.itemForm.setValue({
+      name: this.selectedItem.name,
+      price: this.selectedItem.price.toString(),
+      quantity: this.selectedItem.quantity.toString(),
+      category: this.categories.find(cat => cat.id === this.selectedItem!.category_id)?.name || '',
+      imageUrl: this.selectedItem.imageUrl
+    });
+    this.showPopup = true;
+  }
   }
 
-  addItem(form?: any): void {
-  if (form && form.invalid) {
+  closePopup(): void {
+    this.showPopup = false;
+    this.editMode = false;
+    this.itemForm.reset();
+  }
+
+  addItem(): void {
+  if (this.itemForm.invalid) {
     return;
   }
-  this.newItem.company_id = 1;
-  this.itemService.addItem(this.newItem).subscribe(
+  const formValue = this.itemForm.value;
+  const categoryId = this.getCategoryId(formValue.category!);
+
+  const newItem: Item = {
+    id: 0,
+    name: formValue.name!,
+    price: Number(formValue.price),
+    quantity: Number(formValue.quantity),
+    imageUrl: formValue.imageUrl!,
+    category_id: categoryId,
+    company_id: 1
+  };
+
+  this.itemService.addItem(newItem).subscribe(
     () => {
       this.loadItems();
       this.closePopup();
@@ -132,18 +162,18 @@ export class StorageComponent implements OnInit {
 }
   selectedItem: Item | null = null;
 
-  viewItemDetails(id: number): void {
-      this.itemService.getItemById(id).subscribe(
-        (data: Item) => {
-          this.selectedItem = data;
-          this.showPopup = false;
-        },
-        (error: any) => {
-          console.error('Error fetching item details:', error);
-        }
-      );
+    viewItemDetails(id: number): void {
+    this.itemService.getItemById(id).subscribe(
+      (data: Item) => {
+        console.log('Fetched item details:', data); 
+        this.selectedItem = data;
+        this.showPopup = false;
+      },
+      (error: any) => {
+        console.error('Error fetching item details:', error);
+      }
+    );
   }
-
 
   closeItemDetailsPopup(): void {
     this.selectedItem = null;
@@ -176,4 +206,33 @@ export class StorageComponent implements OnInit {
       );
     }
   }
+
+  saveUpdatedItem(): void {
+  if (this.itemForm.invalid || !this.selectedItem) {
+    return;
+  }
+  const formValue = this.itemForm.value;
+  const categoryId = this.getCategoryId(formValue.category!);
+
+  const updatedItem: Item = {
+    ...this.selectedItem,
+    name: formValue.name!,
+    price: Number(formValue.price),
+    quantity: Number(formValue.quantity),
+    imageUrl: formValue.imageUrl!,
+    category_id: categoryId
+  };
+
+  this.itemService.updateItem(updatedItem).subscribe(
+    () => {
+      this.loadItems();
+      this.closePopup();
+      this.selectedItem = null;
+      this.editMode = false;
+    },
+    (error: any) => {
+      console.error('Error updating item:', error);
+    }
+  );
+}
 }
