@@ -1,10 +1,10 @@
 <div class="search-container">
-    <input type="text" placeholder="Search.." class="searchbar" [(ngModel)]="searchQuery" (input)="filterItems()">
+    <input type="text" placeholder="Search.." class="searchbar">
     <img src="assets/images/search.png" alt="search" class="search-icon">
 </div>
 
 <div class="dropdown">
-    <select name="category" id="category" [(ngModel)]="selectedCategory" (change)="filterItems()">
+    <select name="category" id="category">
         <option value="all">Alle categorieën</option>
         <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
     </select>
@@ -73,7 +73,7 @@
 </div>
 
 <div class="itemList">
-    <div class="itemWrapper" *ngFor="let item of filteredItems">
+    <div class="itemWrapper" *ngFor="let item of items">
         <div class="item" (click)="viewItemDetails(item.id)">
             <div class="itemImage">
                 <img [src]="item.imageUrl" alt="itemImage">
@@ -83,7 +83,7 @@
         <div class="itemStock">Voorraad: {{ item.quantity }} stuks</div>
     </div>
 </div>
-
++
 <div class="popup itemDetailsPopup" *ngIf="selectedItem && !showPopup">
   <div class="popup-content">
     <span class="close" (click)="closeItemDetailsPopup()">&times;</span>

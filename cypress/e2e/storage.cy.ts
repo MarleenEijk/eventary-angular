@@ -9,6 +9,12 @@ describe('Storage', () => {
         });
     });
 
+    it ('should not show item details when non existent item is clicked', () => {
+        cy.visit('/storage');
+        cy.get('.itemWrapper').eq(99).click();
+        cy.get('.itemDetailsPopup').should('not.exist');
+    });
+
     it('should show item details when clicked', () => {
         cy.visit('/storage');
         cy.get('.itemWrapper').first().click();
