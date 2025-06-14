@@ -1,4 +1,4 @@
 export const environment = {
-    isProduction: true,
-    apiUrl: 'https://eventary-api.victoriousrock-cc8323fc.northeurope.azurecontainerapps.io'
-}
+  production: false,
+  apiUrl: 'http://localhost:5255/api'
+};

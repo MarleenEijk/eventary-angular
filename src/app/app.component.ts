@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from "./navbar/navbar.component";
 import { StorageComponent } from "./storage/storage.component";
 import { OrderComponent } from "./order/order.component";
+import { environment } from '../environment/environment';
 
 @Component({
   selector: 'app-root',
@@ -14,4 +15,8 @@ import { OrderComponent } from "./order/order.component";
 })
 export class AppComponent {
   title = 'eventary-angular';
+
+  constructor() {
+    console.log('🌐 API URL from environment:', environment.apiUrl);
+  }
 }

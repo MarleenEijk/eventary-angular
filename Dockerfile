@@ -8,13 +8,13 @@ RUN npm install
 COPY . .
 RUN npm run build -- --configuration production
 
-RUN ls -l /app/dist/eventary-angular
+RUN ls -la /app/dist/eventary-angular/browser
 
 FROM nginx:alpine
 
 RUN rm -rf /usr/share/nginx/html/*
 
-COPY --from=build /app/dist/eventary-angular/browser/ /usr/share/nginx/html
+COPY --from=build /app/dist/eventary-angular/browser /usr/share/nginx/html
 
 EXPOSE 80
 

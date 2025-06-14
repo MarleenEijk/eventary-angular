@@ -1,4 +1,6 @@
 export const environment = {
-    isProduction: false,
-    apiUrl: 'http://localhost:5109/api'
-}
+  production: false,
+  apiUrl: 'http://localhost:5109/api'
+};
+
+console.error('🚨 Using development environment.ts (NOT production)');
