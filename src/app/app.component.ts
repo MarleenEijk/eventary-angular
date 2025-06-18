@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from "./navbar/navbar.component";
 import { StorageComponent } from "./storage/storage.component";
@@ -13,10 +13,17 @@ import { environment } from '../environment/environment';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'eventary-angular';
 
-  constructor() {
-    console.log('🌐 API URL from environment:', environment.apiUrl);
+  constructor(private router: Router) {
+    console.log('API URL from environment:', environment.apiUrl);
+  }
+
+  ngOnInit(): void {
+    const selectedEmployee = localStorage.getItem('selectedEmployee');
+    if (!selectedEmployee && this.router.url !== '/select-user') {
+      this.router.navigate(['/select-user']);
+    }
   }
 }

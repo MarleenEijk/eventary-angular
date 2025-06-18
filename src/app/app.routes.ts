@@ -5,9 +5,13 @@ import { PlanningComponent } from './planning/planning.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 
 export const routes: Routes = [
+  {
+    path: 'select-user',
+    loadComponent: () => import('./employeeselect/employeeselect.component').then(m => m.EmployeeselectComponent)
+  },
   { path: 'storage', component: StorageComponent },
   { path: 'orders', component: OrderComponent },
   { path: 'planning', component: PlanningComponent },
   { path: 'invoice', component: InvoiceComponent },
-  { path: '', redirectTo: '/storage', pathMatch: 'full' }
+  { path: '', redirectTo: 'storage', pathMatch: 'full' }
 ];

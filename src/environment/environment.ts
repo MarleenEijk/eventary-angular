@@ -3,4 +3,4 @@ export const environment = {
   apiUrl: 'http://localhost:5109/api'
 };
 
-console.error('🚨 Using development environment.ts (NOT production)');
+console.error('Using development environment.ts (NOT production)');

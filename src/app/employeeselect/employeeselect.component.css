@@ -1,0 +1,23 @@
+.employee-select{
+    z-index: 1000;
+    position: absolute;
+    margin-left: 20em;
+    margin-top: 2em;
+}
+
+.selectEmployeeButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 15em;
+    height: 2em;
+    margin-bottom: 1em;
+    border: 0px;
+    border-radius: 0.5em;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.selectEmployeeButton:hover {
+    background-color: #cccccc   ;
+}
