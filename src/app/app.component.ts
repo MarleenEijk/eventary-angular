@@ -20,10 +20,6 @@ export class AppComponent implements OnInit {
     console.log('API URL from environment:', environment.apiUrl);
   }
 
-  ngOnInit(): void {
-    const selectedEmployee = localStorage.getItem('selectedEmployee');
-    if (!selectedEmployee && this.router.url !== '/select-user') {
-      this.router.navigate(['/select-user']);
-    }
-  }
+  ngOnInit(): void {}
+  
 }
